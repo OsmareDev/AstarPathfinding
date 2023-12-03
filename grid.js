@@ -32,12 +32,12 @@ class Grid {
     render() {
         stroke(190);
         fill(190);
-        // dibujado lineas verticales
+        // drawn vertical lines
         for (var i = 0; i <= this.n_casillas_largo; i++) {
             var pos_x = i*this.tam_casilla;
             line(pos_x, 0, pos_x, windowHeight);
         }
-        // dibujado lineas horizontales
+        // drawn horizontal lines
         for (var i = 0; i <= this.n_casillas_alto; i++) {
             var pos_y = i*this.tam_casilla;
             line(0, pos_y, windowWidth, pos_y);
@@ -88,7 +88,6 @@ class Grid {
         var n_x = (int)(pos_x/this.tam_casilla);
         var n_y = (int)(pos_y/this.tam_casilla);
 
-        //alomejor hace falta comprobar que no se trata de acceder fuera del grid
         return {x:n_x, y:n_y};
     }
 
@@ -145,7 +144,7 @@ class Grid {
 
         return vecinos;
 
-        // aqui puede hacerse movimiento diagonal
+        // diagonal movement can be done here
     }
 
     setNodoIni(x,y) {

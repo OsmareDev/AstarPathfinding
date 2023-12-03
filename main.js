@@ -51,7 +51,7 @@ function windowResized() {
 }
 
 function mouseDragged() {
-    // bloquear con la b
+    // block with b
     if (keyCode == 66) {
         var pos = grid.getCasilla(mouseX, mouseY);
         if (grid.isInside(pos.x, pos.y)){
@@ -59,7 +59,7 @@ function mouseDragged() {
         }
     }
 
-    // liberar con la l
+    // release with the l
     if (keyCode == 76) {
         var pos = grid.getCasilla(mouseX, mouseY);
         console.log(pos);
@@ -70,7 +70,7 @@ function mouseDragged() {
 }
 
 function mousePressed() {
-    // bloquear con la b
+    // block with b
     if (keyCode == 66) {
         var pos = grid.getCasilla(mouseX, mouseY);
         if (grid.isInside(pos.x, pos.y)){
@@ -78,7 +78,7 @@ function mousePressed() {
         }
     }
 
-    // liberar con la l
+    // release with the l
     if (keyCode == 76) {
         var pos = grid.getCasilla(mouseX, mouseY);
         if (grid.isInside(pos.x, pos.y)){
@@ -86,7 +86,7 @@ function mousePressed() {
         }
     }
 
-    // goal con la g
+    // goal with the g
     if (keyCode == 71) {
         var pos = grid.getCasilla(mouseX, mouseY);
         if (grid.isInside(pos.x, pos.y)){
@@ -94,7 +94,7 @@ function mousePressed() {
         }
     }
 
-    // goal con la f
+    // goal with the f
     if (keyCode == 70) {
         var pos = grid.getCasilla(mouseX, mouseY);
         if (grid.isInside(pos.x, pos.y)){

@@ -61,33 +61,33 @@ class Boid {
 
     // update function
     update() {
-        // Refrescar velocidad
+        // Refresh speed
         this.velocity.add(this.acceleration);
-        // Limitar velocidad
+        // Limit speed
         this.velocity.limit(this.maxspeed);
 
         this.position.add(this.velocity);
-        // Resetear acceleración a 0 en cada ciclo
+        // Reset acceleration to 0 in each cycle
         this.acceleration.mult(0);
     }
 
     seek() {
         var target = createVector(grid.disp_center + this.target.pos_x * grid.tam_casilla, grid.disp_center + this.target.pos_y * grid.tam_casilla);
-        let desired = p5.Vector.sub(target, this.position);  // Un vector apuntando desde la ubicación hacia el objetivo
-        // Normalizar deseado y escalar según velocidad máxima
+        let desired = p5.Vector.sub(target, this.position);  // A vector pointing from the location towards the target
+        // Normalize desired and scale according to maximum speed
         
         desired.normalize();
         desired.mult(this.maxspeed);
 
-        // Viraje = Deseado - Velocidad
+        // Steer = Desired - Speed
         let steer = p5.Vector.sub(desired, this.velocity);
-        steer.limit(this.maxforce);  // Limita al máximo de fuerza de viraje
+        steer.limit(this.maxforce);  // Limits maximum steering force
         return steer;
     }
 
     flee(target) {
-        let desired = p5.Vector.sub(this.position, target);  // Un vector apuntando desde la ubicación hacia el objetivo
-        // Normalizar deseado y escalar según velocidad máxima
+        let desired = p5.Vector.sub(this.position, target);  // A vector pointing from the location towards the target
+        // Normalize desired and scale according to maximum speed
         if (desired.mag() > 100)
             return;
 
@@ -121,7 +121,7 @@ class Boid {
     }
 
     render() {
-      // Dibuja un triángulo rotado en la dirección de la velocidad
+      // Draw a triangle rotated in the direction of velocity
       let theta = this.velocity.heading() + radians(90);
       fill(127);
       stroke(200);
@@ -138,14 +138,14 @@ class Boid {
 
     // flock management
     flock(boids) {
-        let sep = this.separate(boids);   // Separación
-        let ali = this.align(boids);      // Alineamiento
-        let coh = this.cohesion(boids);   // Cohesión
-        // Dar un peso arbitrario a cada fuerza
+        let sep = this.separate(boids);   // Separation
+        let ali = this.align(boids);      // Alignment
+        let coh = this.cohesion(boids);   // Cohesion
+        // Give an arbitrary weight to each force
         sep.mult(this.separationForce);
         ali.mult(this.alignForce);
         coh.mult(this.cohesionForce);
-        // Suma los vectores de fuerza a la aceleración
+        // Add the force vectors to the acceleration
         this.applyForce(sep);
         this.applyForce(ali);
         this.applyForce(coh);
@@ -154,27 +154,27 @@ class Boid {
     separate(boids) {
         let steer = createVector(0, 0);
         let count = 0;
-        // Por cada boid en el sistema, revisa si está muy cerca
+        // For each boid in the system, check if it is too close
         for (let i = 0; i < boids.length; i++) {
           let d = p5.Vector.dist(this.position, boids[i].position);
-          // Si la distancia es mayor a 0 y menor que una cantidad arbitraria (0 cuando eres tú mismo)
+          // If the distance is greater than 0 and less than an arbitrary amount (0 when you are yourself)
           if ((d > 0) && (d < this.separation)) {
-            // Calcular el vector apuntando a alejarse del vecino
+            // Calculate the vector pointing away from the neighbor
             let diff = p5.Vector.sub(this.position, boids[i].position);
             diff.normalize();
-            diff.div(d);        // Peso por distancia
+            diff.div(d);        // Weight per distance
             steer.add(diff);
-            count++;            // Mantener registro de cantidad
+            count++;            // Maintain quantity record
           }
         }
-        // Promedio -- divide por la cantidad
+        // Average -- divide by the amount
         if (count > 0) {
           steer.div(count);
         }
       
-        // Mientras el vector sea mayor a 0
+        // As long as the vector is greater than 0
         if (steer.mag() > 0) {
-          // Implementa Reynolds: Viraje = Deseado - Velocidad
+          // Implements Reynolds: Steer = Desired - Speed
           steer.normalize();
           steer.mult(this.maxspeed);
           steer.sub(this.velocity);
@@ -206,18 +206,18 @@ class Boid {
     }
 
     cohesion(boids) {
-        let sum = createVector(0, 0);   // Empieza con un vector vacío para acumular todas las posiciones
+        let sum = createVector(0, 0);   // Start with an empty vector to accumulate all positions
         let count = 0;
         for (let i = 0; i < boids.length; i++) {
           let d = p5.Vector.dist(this.position,boids[i].position);
           if ((d > 0) && (d < this.neighbordist)) {
-            sum.add(boids[i].position); // Añada posición
+            sum.add(boids[i].position); // Add position
             count++;
           }
         }
         if (count > 0) {
           sum.div(count);
-          return this.seek(sum);  // Vira hacia la posición
+          return this.seek(sum);  // Steer to position
         } else {
           return createVector(0, 0);
         }
@@ -225,7 +225,7 @@ class Boid {
 
     follow(p) {
 
-      // Predict the vehicle future location
+      // Predict the boid future location
       let predict = this.velocity.copy();
       predict.normalize();
       // 25 pixels ahead in current velocity direction
@@ -300,9 +300,6 @@ class Boid {
         let ap = p5.Vector.sub(p, a);
         let ab = p5.Vector.sub(b, a);
         ab.normalize();
-    
-        // Instead of d = ap.mag() * cos(theta)
-        // See file explanation.js or page 290
         let d = ap.dot(ab);
     
         ab.mult(d);

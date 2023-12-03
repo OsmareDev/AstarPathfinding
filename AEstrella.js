@@ -6,7 +6,7 @@ class AEstrella {
 
     colors = []
 
-    //lista de caminos encontrados por A*
+    //list of paths found by A*
     paths = [];
 
     constructor(n_caminos) {
@@ -24,7 +24,7 @@ class AEstrella {
         var abs = Math.abs, SQRT2 = Math.SQRT2,
         weight = peso;
 
-        // el primer nodo a comprobar es el inicial
+        // the first node to check is the initial one
         var nodoIni = grid.nodo_ini;
         nodoIni.g = 0;
         nodoIni.f = 0;
@@ -39,7 +39,7 @@ class AEstrella {
                 await this.sleep(10);
             }
 
-            // si estas en el final devuelve el camino
+            // If you are at the end, return the path
             if (nodo.pos_x == grid.nodo_fin.pos_x && nodo.pos_y == grid.nodo_fin.pos_y) {
                 this.camino(nodo);
                 if (!(this.paths.length == n_caminos)) {
@@ -77,7 +77,7 @@ class AEstrella {
                     if (!vecino.opened) {
                         this.openList.push(vecino);
 
-                        // se pinta el vecino elegible
+                        // the eligible neighbor is painted
                         if (pintarProcedimiento){
                             await this.sleep(10);
                         }
@@ -115,7 +115,7 @@ class AEstrella {
         for (var e of this.path[n]){
             await this.sleep(20);
 
-            // pintar las casillas
+            // paint the boxes
             fill(255,0,255);
             rect(e.pos_x*grid.tam_casilla, e.pos_y*grid.tam_casilla, grid.tam_casilla,grid.tam_casilla);
         }
@@ -137,7 +137,7 @@ class AEstrella {
         this.openList.clear();
     }
 
-    // funcion de parar el codigo
+    // stop code function
     sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }

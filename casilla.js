@@ -5,8 +5,7 @@ class casilla {
 
     is_ini;
     is_fin;
-
-    //cosas de algoritmo A*
+    
     g;
     h;
     f;
