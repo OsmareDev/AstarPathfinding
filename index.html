@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.js" integrity="sha512-+tu0+vUXyZX+S51npa//IN6znNTLZsBoy8mXn9WzHxfBqYMy6gOzzfTK0VqZf9O171RY9AJviHDokCnvEq8+1A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script src="grid.js"></script>
+    <script src="casilla.js"></script>
+
+    <script src="AEstrella.js"></script>
+    <script src="./node_modules/heap/lib/heap.js"></script>
+
+    <script src="flock.js"></script>
+    <script src="boid.js"></script>
+
+    <script src="main.js"></script>
+
+
+    <div class="container">
+        <div class="card">
+            <h3>Instrucciones</h3>
+            <hr style="color: white">
+            <p>Para generar obstaculos de manera random pulsa r</p>
+            <p>Para generar obstaculos pulsa b y luego haz click y arrastra</p>
+            <p>Para limpiar obstaculos puls l y clica y arrastra sobre lo que quieras limpiar</p>
+            <p>Para cambiar el inicio pulsa g y clica donde lo quieras</p>
+            <p>Para cambiar el final pulsa f y clica donde lo quieras</p>
+            <p>Para ejecutar el algoritmo pulsa espacio</p>
+            <p>Cuando ya hayas generado los caminos pulsa q para soltar flocks que los recorran</p>
+            <hr>
+        </div>
+
+        <div class="card">
+            <h3>Opciones</h3>
+            <hr style="color: white">
+            <label for="n_caminos">numero de caminos</label>
+            <input type="number" id="n_caminos" onchange="changeCaminos()" value="1" min="1" step="1">
+            <br>
+            <label for="porc_obst">porcentaje de obstaculos</label>
+            <input type="number" id="porc_obst" onchange="changePorc()" value="0.2" min="0" max="1" step="0.1">
+            <br>
+            <label for="pintar">pintar procedimiento?</label>
+            <input type="checkbox" name="pintar" id="pintar" onchange="change_pintar()">
+            <br>
+            <label for="casillas">numero de casillas</label>
+            <input type="number" name="casillas" id="casillas" onchange="nuevas_casillas()" min="2" step="1" value="40">
+            <br>
+        </div>
+
+        <div class="time">
+            <h1 id="time">~ ms</h1>
+        </div>
+    </div>
+</body>
+</html>

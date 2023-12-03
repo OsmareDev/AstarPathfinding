@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+body {
+    background-color: rgb(10,10,10);
+}
+
+.container {
+    background-color: rgb(10,10,10);
+    color: aliceblue;
+    position: absolute;
+    height: 100vh;
+    width: 100vh;
+    left: 101vh;
+    display: flex;
+    flex-wrap: row wrap;
+    flex-direction: column;
+    padding: 1%;
+    align-content: space-between;
+    align-items: space-between;
+}
+
+.card {
+    background-color: rgb(20,20,20);
+    margin-bottom: 1%;
+}
+
+.time {
+    position: absolute;
+    bottom: 0px;
+}

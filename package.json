@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "heap-js": "^2.2.0"
+  }
+}
