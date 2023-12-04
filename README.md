@@ -1,5 +1,7 @@
-# AstarPathfinding
+# [AstarPathfinding](https://osmaredev.github.io/AstarPathfinding/)
 The A* algorithm is a path finding method that finds the shortest path between two points in a weighted graph, using heuristics to optimize efficiency and ensure path optimization.
+
+![a2](https://github.com/OsmareDev/AstarPathfinding/assets/50903643/87513516-55e6-469b-ac29-795fcb26ceaa)
 
 # English
 
